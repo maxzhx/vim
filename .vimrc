@@ -64,6 +64,9 @@ let g:neocomplete#enable_at_startup = 1
 " NERDTree
 " shortcut for NERDTree
 map <F2> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrows = 1
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 " UltiSnips
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
