@@ -23,9 +23,11 @@ Plugin 'honza/vim-snippets'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'bling/vim-airline'
-Plugin 'Raimondi/delimitMate'
+" Plugin 'Raimondi/delimitMate'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'vale1410/vim-minizinc'
+Plugin 'vim-latex/vim-latex'
 
 " Color schemes
 Plugin 'altercation/vim-colors-solarized'
@@ -53,10 +55,6 @@ filetype plugin indent on    " required
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_ctags_bin = '/usr/local/bin/ctags'
 
-" Eclim
-" activate eclim auto-compelete
-" let g:EclimCompletionMethod = 'omnifunc'
-
 " Neocomplete
 " Use neocomplete.
 let g:neocomplete#enable_at_startup = 1
@@ -77,14 +75,14 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-" delimitMate
-let g:delimitMate_expand_cr = 1
-
 " NerdCommenter
 " adding space
 let g:NERDSpaceDelims = 1
 
+
 " syntastic
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [], 'passive_filetypes': [] }
+nnoremap <C-s> :SyntasticToggleMode<CR> :w<CR>
 " set statusline+=%#warningmsg#
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
@@ -99,13 +97,30 @@ let g:syntastic_python_checkers = ['flake8']
 " let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,W801"'
 let g:syntastic_ruby_checkers = ['rubocop']
 
+
+let g:Tex_DefaultTargetFormat = 'pdf'
+ 
+let g:Tex_CompileRule_dvi = 'latex --interaction=nonstopmode $*'
+let g:Tex_CompileRule_ps = 'dvips -Pwww -o $*.ps $*.dvi'
+let g:Tex_CompileRule_pspdf = 'ps2pdf $*.ps'
+let g:Tex_CompileRule_dvipdf = 'dvipdfm $*.dvi'
+let g:Tex_CompileRule_pdf = 'pdflatex -synctex=1 --interaction=nonstopmode $*'
+ 
+let g:Tex_ViewRule_dvi = 'texniscope'
+let g:Tex_ViewRule_ps = 'Preview'
+let g:Tex_ViewRule_pdf = 'Skim'
+ 
+let g:Tex_FormatDependency_ps  = 'dvi,ps'
+let g:Tex_FormatDependency_pspdf = 'dvi,ps,pspdf'
+let g:Tex_FormatDependency_dvipdf = 'dvi,dvipdf'
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                   Basic                                    "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 syntax enable
 "let g:solarized_termcolors=256
 set background=dark
-colorscheme molokai
+colorscheme solarized
 
 set number
 set tabstop=4
@@ -137,6 +152,7 @@ autocmd FileType html setlocal shiftwidth=2 tabstop=2
 autocmd FileType css setlocal shiftwidth=2 tabstop=2
 autocmd FileType jade setlocal shiftwidth=2 tabstop=2
 autocmd FileType zinc setlocal shiftwidth=2 tabstop=2
+autocmd FileType ada setlocal shiftwidth=3 tabstop=3
 
 " statusline
 "set laststatus=2
